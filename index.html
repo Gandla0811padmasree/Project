@@ -3,21 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Page</title>
+    <title>Valentine's Day Special</title>
     <style>
         body {
-            background-color: pink;
-            color: red;
-            text-align: center;
+            background-color: #ffcccb;
             font-family: Arial, sans-serif;
+            text-align: center;
         }
         h1 {
-            margin-top: 50px;
+            color: #d50000;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        .heart {
+            color: red;
+            font-size: 50px;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <h1>Happy Valentine's Day!</h1>
-    <p>Wishing you a day filled with love and happiness.</p>
+    <div class="heart">❤️</div>
+    <form id="passwordForm">
+        <label for="password">Enter the password:</label>
+        <input type="password" id="password" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="questions" class="hidden">
+        <h2>Romantic Questions</h2>
+        <ol>
+            <li>What is your idea of a perfect date?</li>
+            <li>What was your first impression of me?</li>
+            <li>What is your favorite memory of us?</li>
+            <li>What song makes you think of me?</li>
+            <li>What is one thing you love about me?</li>
+            <li>If you could take me anywhere, where would it be?</li>
+            <li>What does love mean to you?</li>
+        </ol>
+        <audio controls>
+            <source src="valentine_song.mp3" type="audio/mp3">
+            Your browser does not support the audio tag.
+        </audio>
+    </div>
+    <script>
+        const passwordForm = document.getElementById('passwordForm');
+        const questionsDiv = document.getElementById('questions');
+        passwordForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = passwordForm.elements['password'].value;
+            if (password === 'LoveIsInTheAir') {
+                questionsDiv.classList.remove('hidden');
+                passwordForm.classList.add('hidden');
+            } else {
+                alert('Wrong password! Please try again.');
+            }
+        });
+    </script>
 </body>
 </html>
